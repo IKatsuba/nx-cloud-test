@@ -1,13 +1,18 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "nx-cloud",
   "tasksRunnerOptions": {
     "default": {
@@ -21,79 +26,260 @@
     }
   },
   "projects": {
-    "docs": { "tags": [] },
-    "docs-e2e": { "tags": [], "implicitDependencies": ["docs"] },
-    "app0": { "tags": [] },
-    "app0-e2e": { "tags": [], "implicitDependencies": ["app0"] },
-    "lib0": { "tags": [] },
-    "app1": { "tags": [] },
-    "app1-e2e": { "tags": [], "implicitDependencies": ["app1"] },
-    "lib1": { "tags": [] },
-    "app2": { "tags": [] },
-    "app2-e2e": { "tags": [], "implicitDependencies": ["app2"] },
-    "lib2": { "tags": [] },
-    "app3": { "tags": [] },
-    "app3-e2e": { "tags": [], "implicitDependencies": ["app3"] },
-    "lib3": { "tags": [] },
-    "app4": { "tags": [] },
-    "app4-e2e": { "tags": [], "implicitDependencies": ["app4"] },
-    "lib4": { "tags": [] },
-    "app5": { "tags": [] },
-    "app5-e2e": { "tags": [], "implicitDependencies": ["app5"] },
-    "lib5": { "tags": [] },
-    "app6": { "tags": [] },
-    "app6-e2e": { "tags": [], "implicitDependencies": ["app6"] },
-    "lib6": { "tags": [] },
-    "app7": { "tags": [] },
-    "app7-e2e": { "tags": [], "implicitDependencies": ["app7"] },
-    "lib7": { "tags": [] },
-    "app8": { "tags": [] },
-    "app8-e2e": { "tags": [], "implicitDependencies": ["app8"] },
-    "lib8": { "tags": [] },
-    "app9": { "tags": [] },
-    "app9-e2e": { "tags": [], "implicitDependencies": ["app9"] },
-    "lib9": { "tags": [] },
-    "app10": { "tags": [] },
-    "app10-e2e": { "tags": [], "implicitDependencies": ["app10"] },
-    "lib10": { "tags": [] },
-    "app11": { "tags": [] },
-    "app11-e2e": { "tags": [], "implicitDependencies": ["app11"] },
-    "lib11": { "tags": [] },
-    "app12": { "tags": [] },
-    "app12-e2e": { "tags": [], "implicitDependencies": ["app12"] },
-    "lib12": { "tags": [] },
-    "app13": { "tags": [] },
-    "app13-e2e": { "tags": [], "implicitDependencies": ["app13"] },
-    "lib13": { "tags": [] },
-    "app14": { "tags": [] },
-    "app14-e2e": { "tags": [], "implicitDependencies": ["app14"] },
-    "lib14": { "tags": [] },
-    "app15": { "tags": [] },
-    "app15-e2e": { "tags": [], "implicitDependencies": ["app15"] },
-    "lib15": { "tags": [] },
-    "app16": { "tags": [] },
-    "app16-e2e": { "tags": [], "implicitDependencies": ["app16"] },
-    "lib16": { "tags": [] },
-    "app17": { "tags": [] },
-    "app17-e2e": { "tags": [], "implicitDependencies": ["app17"] },
-    "lib17": { "tags": [] },
-    "app18": { "tags": [] },
-    "app18-e2e": { "tags": [], "implicitDependencies": ["app18"] },
-    "lib18": { "tags": [] },
-    "app19": { "tags": [] },
-    "app19-e2e": { "tags": [], "implicitDependencies": ["app19"] },
-    "lib19": { "tags": [] },
-    "app20": { "tags": [] },
-    "app20-e2e": { "tags": [], "implicitDependencies": ["app20"] },
-    "lib20": { "tags": [] },
-    "app21": { "tags": [] },
-    "app21-e2e": { "tags": [], "implicitDependencies": ["app21"] },
-    "lib21": { "tags": [] },
-    "app22": { "tags": [] },
-    "app22-e2e": { "tags": [], "implicitDependencies": ["app22"] },
-    "lib22": { "tags": [] },
-    "app23": { "tags": [] },
-    "app23-e2e": { "tags": [], "implicitDependencies": ["app23"] },
-    "lib23": { "tags": [] }
+    "app0": {
+      "tags": []
+    },
+    "app0-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app0"]
+    },
+    "app1": {
+      "tags": []
+    },
+    "app1-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app1"]
+    },
+    "app10": {
+      "tags": []
+    },
+    "app10-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app10"]
+    },
+    "app11": {
+      "tags": []
+    },
+    "app11-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app11"]
+    },
+    "app12": {
+      "tags": []
+    },
+    "app12-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app12"]
+    },
+    "app13": {
+      "tags": []
+    },
+    "app13-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app13"]
+    },
+    "app14": {
+      "tags": []
+    },
+    "app14-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app14"]
+    },
+    "app15": {
+      "tags": []
+    },
+    "app15-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app15"]
+    },
+    "app16": {
+      "tags": []
+    },
+    "app16-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app16"]
+    },
+    "app17": {
+      "tags": []
+    },
+    "app17-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app17"]
+    },
+    "app18": {
+      "tags": []
+    },
+    "app18-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app18"]
+    },
+    "app19": {
+      "tags": []
+    },
+    "app19-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app19"]
+    },
+    "app2": {
+      "tags": []
+    },
+    "app2-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app2"]
+    },
+    "app20": {
+      "tags": []
+    },
+    "app20-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app20"]
+    },
+    "app21": {
+      "tags": []
+    },
+    "app21-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app21"]
+    },
+    "app22": {
+      "tags": []
+    },
+    "app22-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app22"]
+    },
+    "app23": {
+      "tags": []
+    },
+    "app23-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app23"]
+    },
+    "app3": {
+      "tags": []
+    },
+    "app3-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app3"]
+    },
+    "app4": {
+      "tags": []
+    },
+    "app4-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app4"]
+    },
+    "app5": {
+      "tags": []
+    },
+    "app5-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app5"]
+    },
+    "app6": {
+      "tags": []
+    },
+    "app6-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app6"]
+    },
+    "app7": {
+      "tags": []
+    },
+    "app7-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app7"]
+    },
+    "app8": {
+      "tags": []
+    },
+    "app8-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app8"]
+    },
+    "app9": {
+      "tags": []
+    },
+    "app9-e2e": {
+      "tags": [],
+      "implicitDependencies": ["app9"]
+    },
+    "docs": {
+      "tags": []
+    },
+    "docs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["docs"]
+    },
+    "lib0": {
+      "tags": []
+    },
+    "lib1": {
+      "tags": []
+    },
+    "lib10": {
+      "tags": []
+    },
+    "lib11": {
+      "tags": []
+    },
+    "lib12": {
+      "tags": []
+    },
+    "lib13": {
+      "tags": []
+    },
+    "lib14": {
+      "tags": []
+    },
+    "lib15": {
+      "tags": []
+    },
+    "lib16": {
+      "tags": []
+    },
+    "lib17": {
+      "tags": []
+    },
+    "lib18": {
+      "tags": []
+    },
+    "lib19": {
+      "tags": []
+    },
+    "lib2": {
+      "tags": []
+    },
+    "lib20": {
+      "tags": []
+    },
+    "lib21": {
+      "tags": []
+    },
+    "lib22": {
+      "tags": []
+    },
+    "lib23": {
+      "tags": []
+    },
+    "lib3": {
+      "tags": []
+    },
+    "lib4": {
+      "tags": []
+    },
+    "lib5": {
+      "tags": []
+    },
+    "lib6": {
+      "tags": []
+    },
+    "lib7": {
+      "tags": []
+    },
+    "lib8": {
+      "tags": []
+    },
+    "lib9": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

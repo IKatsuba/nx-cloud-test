@@ -32,117 +32,6 @@
     }
   },
   "projects": {
-    "docs": {
-      "projectType": "application",
-      "root": "apps/docs",
-      "sourceRoot": "apps/docs/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/docs",
-            "index": "apps/docs/src/index.html",
-            "main": "apps/docs/src/main.ts",
-            "polyfills": "apps/docs/src/polyfills.ts",
-            "tsConfig": "apps/docs/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/docs/src/favicon.ico", "apps/docs/src/assets"],
-            "styles": ["apps/docs/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/docs/src/environments/environment.ts",
-                  "with": "apps/docs/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "docs:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "docs:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "docs:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/docs/src/**/*.ts",
-              "apps/docs/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/docs"],
-          "options": {
-            "jestConfig": "apps/docs/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "docs-e2e": {
-      "root": "apps/docs-e2e",
-      "sourceRoot": "apps/docs-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/docs-e2e/cypress.json",
-            "tsConfig": "apps/docs-e2e/tsconfig.e2e.json",
-            "devServerTarget": "docs:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "docs:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/docs-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "app0": {
       "projectType": "application",
       "root": "apps/app0",
@@ -157,10 +46,20 @@
             "main": "apps/app0/src/main.ts",
             "polyfills": "apps/app0/src/polyfills.ts",
             "tsConfig": "apps/app0/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app0/src/favicon.ico", "apps/app0/src/assets"],
-            "styles": ["apps/app0/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app0/src/favicon.ico",
+              "apps/app0/src/assets"
+            ],
+            "styles": [
+              "apps/app0/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -190,7 +89,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -220,7 +120,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app0"],
+          "outputs": [
+            "coverage/apps/app0"
+          ],
           "options": {
             "jestConfig": "apps/app0/jest.config.js",
             "passWithNoTests": true
@@ -249,32 +151,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app0-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib0": {
-      "projectType": "library",
-      "root": "libs/lib0",
-      "sourceRoot": "libs/lib0/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib0/src/**/*.ts",
-              "libs/lib0/src/**/*.html"
+              "apps/app0-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib0"],
-          "options": {
-            "jestConfig": "libs/lib0/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -293,10 +172,20 @@
             "main": "apps/app1/src/main.ts",
             "polyfills": "apps/app1/src/polyfills.ts",
             "tsConfig": "apps/app1/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app1/src/favicon.ico", "apps/app1/src/assets"],
-            "styles": ["apps/app1/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app1/src/favicon.ico",
+              "apps/app1/src/assets"
+            ],
+            "styles": [
+              "apps/app1/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -326,7 +215,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -356,7 +246,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app1"],
+          "outputs": [
+            "coverage/apps/app1"
+          ],
           "options": {
             "jestConfig": "apps/app1/jest.config.js",
             "passWithNoTests": true
@@ -385,1120 +277,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app1-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib1": {
-      "projectType": "library",
-      "root": "libs/lib1",
-      "sourceRoot": "libs/lib1/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib1/src/**/*.ts",
-              "libs/lib1/src/**/*.html"
+              "apps/app1-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib1"],
-          "options": {
-            "jestConfig": "libs/lib1/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app2": {
-      "projectType": "application",
-      "root": "apps/app2",
-      "sourceRoot": "apps/app2/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app2",
-            "index": "apps/app2/src/index.html",
-            "main": "apps/app2/src/main.ts",
-            "polyfills": "apps/app2/src/polyfills.ts",
-            "tsConfig": "apps/app2/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app2/src/favicon.ico", "apps/app2/src/assets"],
-            "styles": ["apps/app2/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app2/src/environments/environment.ts",
-                  "with": "apps/app2/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app2:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app2:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app2:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app2/src/**/*.ts",
-              "apps/app2/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app2"],
-          "options": {
-            "jestConfig": "apps/app2/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app2-e2e": {
-      "root": "apps/app2-e2e",
-      "sourceRoot": "apps/app2-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app2-e2e/cypress.json",
-            "tsConfig": "apps/app2-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app2:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app2:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app2-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib2": {
-      "projectType": "library",
-      "root": "libs/lib2",
-      "sourceRoot": "libs/lib2/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib2/src/**/*.ts",
-              "libs/lib2/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib2"],
-          "options": {
-            "jestConfig": "libs/lib2/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app3": {
-      "projectType": "application",
-      "root": "apps/app3",
-      "sourceRoot": "apps/app3/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app3",
-            "index": "apps/app3/src/index.html",
-            "main": "apps/app3/src/main.ts",
-            "polyfills": "apps/app3/src/polyfills.ts",
-            "tsConfig": "apps/app3/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app3/src/favicon.ico", "apps/app3/src/assets"],
-            "styles": ["apps/app3/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app3/src/environments/environment.ts",
-                  "with": "apps/app3/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app3:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app3:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app3:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app3/src/**/*.ts",
-              "apps/app3/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app3"],
-          "options": {
-            "jestConfig": "apps/app3/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app3-e2e": {
-      "root": "apps/app3-e2e",
-      "sourceRoot": "apps/app3-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app3-e2e/cypress.json",
-            "tsConfig": "apps/app3-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app3:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app3:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app3-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib3": {
-      "projectType": "library",
-      "root": "libs/lib3",
-      "sourceRoot": "libs/lib3/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib3/src/**/*.ts",
-              "libs/lib3/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib3"],
-          "options": {
-            "jestConfig": "libs/lib3/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app4": {
-      "projectType": "application",
-      "root": "apps/app4",
-      "sourceRoot": "apps/app4/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app4",
-            "index": "apps/app4/src/index.html",
-            "main": "apps/app4/src/main.ts",
-            "polyfills": "apps/app4/src/polyfills.ts",
-            "tsConfig": "apps/app4/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app4/src/favicon.ico", "apps/app4/src/assets"],
-            "styles": ["apps/app4/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app4/src/environments/environment.ts",
-                  "with": "apps/app4/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app4:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app4:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app4:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app4/src/**/*.ts",
-              "apps/app4/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app4"],
-          "options": {
-            "jestConfig": "apps/app4/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app4-e2e": {
-      "root": "apps/app4-e2e",
-      "sourceRoot": "apps/app4-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app4-e2e/cypress.json",
-            "tsConfig": "apps/app4-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app4:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app4:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app4-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib4": {
-      "projectType": "library",
-      "root": "libs/lib4",
-      "sourceRoot": "libs/lib4/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib4/src/**/*.ts",
-              "libs/lib4/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib4"],
-          "options": {
-            "jestConfig": "libs/lib4/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app5": {
-      "projectType": "application",
-      "root": "apps/app5",
-      "sourceRoot": "apps/app5/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app5",
-            "index": "apps/app5/src/index.html",
-            "main": "apps/app5/src/main.ts",
-            "polyfills": "apps/app5/src/polyfills.ts",
-            "tsConfig": "apps/app5/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app5/src/favicon.ico", "apps/app5/src/assets"],
-            "styles": ["apps/app5/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app5/src/environments/environment.ts",
-                  "with": "apps/app5/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app5:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app5:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app5:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app5/src/**/*.ts",
-              "apps/app5/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app5"],
-          "options": {
-            "jestConfig": "apps/app5/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app5-e2e": {
-      "root": "apps/app5-e2e",
-      "sourceRoot": "apps/app5-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app5-e2e/cypress.json",
-            "tsConfig": "apps/app5-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app5:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app5:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app5-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib5": {
-      "projectType": "library",
-      "root": "libs/lib5",
-      "sourceRoot": "libs/lib5/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib5/src/**/*.ts",
-              "libs/lib5/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib5"],
-          "options": {
-            "jestConfig": "libs/lib5/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app6": {
-      "projectType": "application",
-      "root": "apps/app6",
-      "sourceRoot": "apps/app6/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app6",
-            "index": "apps/app6/src/index.html",
-            "main": "apps/app6/src/main.ts",
-            "polyfills": "apps/app6/src/polyfills.ts",
-            "tsConfig": "apps/app6/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app6/src/favicon.ico", "apps/app6/src/assets"],
-            "styles": ["apps/app6/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app6/src/environments/environment.ts",
-                  "with": "apps/app6/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app6:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app6:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app6:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app6/src/**/*.ts",
-              "apps/app6/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app6"],
-          "options": {
-            "jestConfig": "apps/app6/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app6-e2e": {
-      "root": "apps/app6-e2e",
-      "sourceRoot": "apps/app6-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app6-e2e/cypress.json",
-            "tsConfig": "apps/app6-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app6:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app6:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app6-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib6": {
-      "projectType": "library",
-      "root": "libs/lib6",
-      "sourceRoot": "libs/lib6/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib6/src/**/*.ts",
-              "libs/lib6/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib6"],
-          "options": {
-            "jestConfig": "libs/lib6/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app7": {
-      "projectType": "application",
-      "root": "apps/app7",
-      "sourceRoot": "apps/app7/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app7",
-            "index": "apps/app7/src/index.html",
-            "main": "apps/app7/src/main.ts",
-            "polyfills": "apps/app7/src/polyfills.ts",
-            "tsConfig": "apps/app7/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app7/src/favicon.ico", "apps/app7/src/assets"],
-            "styles": ["apps/app7/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app7/src/environments/environment.ts",
-                  "with": "apps/app7/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app7:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app7:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app7:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app7/src/**/*.ts",
-              "apps/app7/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app7"],
-          "options": {
-            "jestConfig": "apps/app7/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app7-e2e": {
-      "root": "apps/app7-e2e",
-      "sourceRoot": "apps/app7-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app7-e2e/cypress.json",
-            "tsConfig": "apps/app7-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app7:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app7:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app7-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib7": {
-      "projectType": "library",
-      "root": "libs/lib7",
-      "sourceRoot": "libs/lib7/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib7/src/**/*.ts",
-              "libs/lib7/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib7"],
-          "options": {
-            "jestConfig": "libs/lib7/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app8": {
-      "projectType": "application",
-      "root": "apps/app8",
-      "sourceRoot": "apps/app8/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app8",
-            "index": "apps/app8/src/index.html",
-            "main": "apps/app8/src/main.ts",
-            "polyfills": "apps/app8/src/polyfills.ts",
-            "tsConfig": "apps/app8/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app8/src/favicon.ico", "apps/app8/src/assets"],
-            "styles": ["apps/app8/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app8/src/environments/environment.ts",
-                  "with": "apps/app8/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app8:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app8:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app8:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app8/src/**/*.ts",
-              "apps/app8/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app8"],
-          "options": {
-            "jestConfig": "apps/app8/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app8-e2e": {
-      "root": "apps/app8-e2e",
-      "sourceRoot": "apps/app8-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app8-e2e/cypress.json",
-            "tsConfig": "apps/app8-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app8:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app8:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app8-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib8": {
-      "projectType": "library",
-      "root": "libs/lib8",
-      "sourceRoot": "libs/lib8/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib8/src/**/*.ts",
-              "libs/lib8/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib8"],
-          "options": {
-            "jestConfig": "libs/lib8/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app9": {
-      "projectType": "application",
-      "root": "apps/app9",
-      "sourceRoot": "apps/app9/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/app9",
-            "index": "apps/app9/src/index.html",
-            "main": "apps/app9/src/main.ts",
-            "polyfills": "apps/app9/src/polyfills.ts",
-            "tsConfig": "apps/app9/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app9/src/favicon.ico", "apps/app9/src/assets"],
-            "styles": ["apps/app9/src/styles.css"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/app9/src/environments/environment.ts",
-                  "with": "apps/app9/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "app9:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "app9:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "app9:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/app9/src/**/*.ts",
-              "apps/app9/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app9"],
-          "options": {
-            "jestConfig": "apps/app9/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app9-e2e": {
-      "root": "apps/app9-e2e",
-      "sourceRoot": "apps/app9-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/app9-e2e/cypress.json",
-            "tsConfig": "apps/app9-e2e/tsconfig.e2e.json",
-            "devServerTarget": "app9:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "app9:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/app9-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib9": {
-      "projectType": "library",
-      "root": "libs/lib9",
-      "sourceRoot": "libs/lib9/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/lib9/src/**/*.ts",
-              "libs/lib9/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib9"],
-          "options": {
-            "jestConfig": "libs/lib9/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -1517,10 +298,20 @@
             "main": "apps/app10/src/main.ts",
             "polyfills": "apps/app10/src/polyfills.ts",
             "tsConfig": "apps/app10/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app10/src/favicon.ico", "apps/app10/src/assets"],
-            "styles": ["apps/app10/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app10/src/favicon.ico",
+              "apps/app10/src/assets"
+            ],
+            "styles": [
+              "apps/app10/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -1550,7 +341,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -1580,7 +372,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app10"],
+          "outputs": [
+            "coverage/apps/app10"
+          ],
           "options": {
             "jestConfig": "apps/app10/jest.config.js",
             "passWithNoTests": true
@@ -1609,32 +403,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app10-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib10": {
-      "projectType": "library",
-      "root": "libs/lib10",
-      "sourceRoot": "libs/lib10/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib10/src/**/*.ts",
-              "libs/lib10/src/**/*.html"
+              "apps/app10-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib10"],
-          "options": {
-            "jestConfig": "libs/lib10/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -1653,10 +424,20 @@
             "main": "apps/app11/src/main.ts",
             "polyfills": "apps/app11/src/polyfills.ts",
             "tsConfig": "apps/app11/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app11/src/favicon.ico", "apps/app11/src/assets"],
-            "styles": ["apps/app11/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app11/src/favicon.ico",
+              "apps/app11/src/assets"
+            ],
+            "styles": [
+              "apps/app11/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -1686,7 +467,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -1716,7 +498,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app11"],
+          "outputs": [
+            "coverage/apps/app11"
+          ],
           "options": {
             "jestConfig": "apps/app11/jest.config.js",
             "passWithNoTests": true
@@ -1745,32 +529,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app11-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib11": {
-      "projectType": "library",
-      "root": "libs/lib11",
-      "sourceRoot": "libs/lib11/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib11/src/**/*.ts",
-              "libs/lib11/src/**/*.html"
+              "apps/app11-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib11"],
-          "options": {
-            "jestConfig": "libs/lib11/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -1789,10 +550,20 @@
             "main": "apps/app12/src/main.ts",
             "polyfills": "apps/app12/src/polyfills.ts",
             "tsConfig": "apps/app12/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app12/src/favicon.ico", "apps/app12/src/assets"],
-            "styles": ["apps/app12/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app12/src/favicon.ico",
+              "apps/app12/src/assets"
+            ],
+            "styles": [
+              "apps/app12/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -1822,7 +593,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -1852,7 +624,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app12"],
+          "outputs": [
+            "coverage/apps/app12"
+          ],
           "options": {
             "jestConfig": "apps/app12/jest.config.js",
             "passWithNoTests": true
@@ -1881,32 +655,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app12-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib12": {
-      "projectType": "library",
-      "root": "libs/lib12",
-      "sourceRoot": "libs/lib12/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib12/src/**/*.ts",
-              "libs/lib12/src/**/*.html"
+              "apps/app12-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib12"],
-          "options": {
-            "jestConfig": "libs/lib12/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -1925,10 +676,20 @@
             "main": "apps/app13/src/main.ts",
             "polyfills": "apps/app13/src/polyfills.ts",
             "tsConfig": "apps/app13/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app13/src/favicon.ico", "apps/app13/src/assets"],
-            "styles": ["apps/app13/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app13/src/favicon.ico",
+              "apps/app13/src/assets"
+            ],
+            "styles": [
+              "apps/app13/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -1958,7 +719,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -1988,7 +750,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app13"],
+          "outputs": [
+            "coverage/apps/app13"
+          ],
           "options": {
             "jestConfig": "apps/app13/jest.config.js",
             "passWithNoTests": true
@@ -2017,32 +781,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app13-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib13": {
-      "projectType": "library",
-      "root": "libs/lib13",
-      "sourceRoot": "libs/lib13/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib13/src/**/*.ts",
-              "libs/lib13/src/**/*.html"
+              "apps/app13-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib13"],
-          "options": {
-            "jestConfig": "libs/lib13/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2061,10 +802,20 @@
             "main": "apps/app14/src/main.ts",
             "polyfills": "apps/app14/src/polyfills.ts",
             "tsConfig": "apps/app14/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app14/src/favicon.ico", "apps/app14/src/assets"],
-            "styles": ["apps/app14/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app14/src/favicon.ico",
+              "apps/app14/src/assets"
+            ],
+            "styles": [
+              "apps/app14/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2094,7 +845,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2124,7 +876,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app14"],
+          "outputs": [
+            "coverage/apps/app14"
+          ],
           "options": {
             "jestConfig": "apps/app14/jest.config.js",
             "passWithNoTests": true
@@ -2153,32 +907,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app14-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib14": {
-      "projectType": "library",
-      "root": "libs/lib14",
-      "sourceRoot": "libs/lib14/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib14/src/**/*.ts",
-              "libs/lib14/src/**/*.html"
+              "apps/app14-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib14"],
-          "options": {
-            "jestConfig": "libs/lib14/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2197,10 +928,20 @@
             "main": "apps/app15/src/main.ts",
             "polyfills": "apps/app15/src/polyfills.ts",
             "tsConfig": "apps/app15/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app15/src/favicon.ico", "apps/app15/src/assets"],
-            "styles": ["apps/app15/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app15/src/favicon.ico",
+              "apps/app15/src/assets"
+            ],
+            "styles": [
+              "apps/app15/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2230,7 +971,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2260,7 +1002,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app15"],
+          "outputs": [
+            "coverage/apps/app15"
+          ],
           "options": {
             "jestConfig": "apps/app15/jest.config.js",
             "passWithNoTests": true
@@ -2289,32 +1033,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app15-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib15": {
-      "projectType": "library",
-      "root": "libs/lib15",
-      "sourceRoot": "libs/lib15/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib15/src/**/*.ts",
-              "libs/lib15/src/**/*.html"
+              "apps/app15-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib15"],
-          "options": {
-            "jestConfig": "libs/lib15/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2333,10 +1054,20 @@
             "main": "apps/app16/src/main.ts",
             "polyfills": "apps/app16/src/polyfills.ts",
             "tsConfig": "apps/app16/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app16/src/favicon.ico", "apps/app16/src/assets"],
-            "styles": ["apps/app16/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app16/src/favicon.ico",
+              "apps/app16/src/assets"
+            ],
+            "styles": [
+              "apps/app16/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2366,7 +1097,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2396,7 +1128,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app16"],
+          "outputs": [
+            "coverage/apps/app16"
+          ],
           "options": {
             "jestConfig": "apps/app16/jest.config.js",
             "passWithNoTests": true
@@ -2425,32 +1159,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app16-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib16": {
-      "projectType": "library",
-      "root": "libs/lib16",
-      "sourceRoot": "libs/lib16/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib16/src/**/*.ts",
-              "libs/lib16/src/**/*.html"
+              "apps/app16-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib16"],
-          "options": {
-            "jestConfig": "libs/lib16/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2469,10 +1180,20 @@
             "main": "apps/app17/src/main.ts",
             "polyfills": "apps/app17/src/polyfills.ts",
             "tsConfig": "apps/app17/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app17/src/favicon.ico", "apps/app17/src/assets"],
-            "styles": ["apps/app17/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app17/src/favicon.ico",
+              "apps/app17/src/assets"
+            ],
+            "styles": [
+              "apps/app17/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2502,7 +1223,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2532,7 +1254,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app17"],
+          "outputs": [
+            "coverage/apps/app17"
+          ],
           "options": {
             "jestConfig": "apps/app17/jest.config.js",
             "passWithNoTests": true
@@ -2561,32 +1285,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app17-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib17": {
-      "projectType": "library",
-      "root": "libs/lib17",
-      "sourceRoot": "libs/lib17/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib17/src/**/*.ts",
-              "libs/lib17/src/**/*.html"
+              "apps/app17-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib17"],
-          "options": {
-            "jestConfig": "libs/lib17/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2605,10 +1306,20 @@
             "main": "apps/app18/src/main.ts",
             "polyfills": "apps/app18/src/polyfills.ts",
             "tsConfig": "apps/app18/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app18/src/favicon.ico", "apps/app18/src/assets"],
-            "styles": ["apps/app18/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app18/src/favicon.ico",
+              "apps/app18/src/assets"
+            ],
+            "styles": [
+              "apps/app18/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2638,7 +1349,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2668,7 +1380,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app18"],
+          "outputs": [
+            "coverage/apps/app18"
+          ],
           "options": {
             "jestConfig": "apps/app18/jest.config.js",
             "passWithNoTests": true
@@ -2697,32 +1411,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app18-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib18": {
-      "projectType": "library",
-      "root": "libs/lib18",
-      "sourceRoot": "libs/lib18/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib18/src/**/*.ts",
-              "libs/lib18/src/**/*.html"
+              "apps/app18-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib18"],
-          "options": {
-            "jestConfig": "libs/lib18/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -2741,10 +1432,20 @@
             "main": "apps/app19/src/main.ts",
             "polyfills": "apps/app19/src/polyfills.ts",
             "tsConfig": "apps/app19/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app19/src/favicon.ico", "apps/app19/src/assets"],
-            "styles": ["apps/app19/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app19/src/favicon.ico",
+              "apps/app19/src/assets"
+            ],
+            "styles": [
+              "apps/app19/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2774,7 +1475,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2804,7 +1506,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app19"],
+          "outputs": [
+            "coverage/apps/app19"
+          ],
           "options": {
             "jestConfig": "apps/app19/jest.config.js",
             "passWithNoTests": true
@@ -2833,32 +1537,135 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app19-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/app19-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
     },
-    "lib19": {
-      "projectType": "library",
-      "root": "libs/lib19",
-      "sourceRoot": "libs/lib19/src",
+    "app2": {
+      "projectType": "application",
+      "root": "apps/app2",
+      "sourceRoot": "apps/app2/src",
       "prefix": "nx-cloud",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app2",
+            "index": "apps/app2/src/index.html",
+            "main": "apps/app2/src/main.ts",
+            "polyfills": "apps/app2/src/polyfills.ts",
+            "tsConfig": "apps/app2/tsconfig.app.json",
+            "assets": [
+              "apps/app2/src/favicon.ico",
+              "apps/app2/src/assets"
+            ],
+            "styles": [
+              "apps/app2/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app2/src/environments/environment.ts",
+                  "with": "apps/app2/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app2:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app2:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app2:build"
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/lib19/src/**/*.ts",
-              "libs/lib19/src/**/*.html"
+              "apps/app2/src/**/*.ts",
+              "apps/app2/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib19"],
+          "outputs": [
+            "coverage/apps/app2"
+          ],
           "options": {
-            "jestConfig": "libs/lib19/jest.config.js",
+            "jestConfig": "apps/app2/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app2-e2e": {
+      "root": "apps/app2-e2e",
+      "sourceRoot": "apps/app2-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app2-e2e/cypress.json",
+            "tsConfig": "apps/app2-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app2:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app2:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app2-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -2877,10 +1684,20 @@
             "main": "apps/app20/src/main.ts",
             "polyfills": "apps/app20/src/polyfills.ts",
             "tsConfig": "apps/app20/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app20/src/favicon.ico", "apps/app20/src/assets"],
-            "styles": ["apps/app20/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app20/src/favicon.ico",
+              "apps/app20/src/assets"
+            ],
+            "styles": [
+              "apps/app20/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -2910,7 +1727,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2940,7 +1758,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app20"],
+          "outputs": [
+            "coverage/apps/app20"
+          ],
           "options": {
             "jestConfig": "apps/app20/jest.config.js",
             "passWithNoTests": true
@@ -2969,32 +1789,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app20-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib20": {
-      "projectType": "library",
-      "root": "libs/lib20",
-      "sourceRoot": "libs/lib20/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib20/src/**/*.ts",
-              "libs/lib20/src/**/*.html"
+              "apps/app20-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib20"],
-          "options": {
-            "jestConfig": "libs/lib20/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -3013,10 +1810,20 @@
             "main": "apps/app21/src/main.ts",
             "polyfills": "apps/app21/src/polyfills.ts",
             "tsConfig": "apps/app21/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app21/src/favicon.ico", "apps/app21/src/assets"],
-            "styles": ["apps/app21/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app21/src/favicon.ico",
+              "apps/app21/src/assets"
+            ],
+            "styles": [
+              "apps/app21/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -3046,7 +1853,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3076,7 +1884,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app21"],
+          "outputs": [
+            "coverage/apps/app21"
+          ],
           "options": {
             "jestConfig": "apps/app21/jest.config.js",
             "passWithNoTests": true
@@ -3105,32 +1915,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app21-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib21": {
-      "projectType": "library",
-      "root": "libs/lib21",
-      "sourceRoot": "libs/lib21/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib21/src/**/*.ts",
-              "libs/lib21/src/**/*.html"
+              "apps/app21-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib21"],
-          "options": {
-            "jestConfig": "libs/lib21/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -3149,10 +1936,20 @@
             "main": "apps/app22/src/main.ts",
             "polyfills": "apps/app22/src/polyfills.ts",
             "tsConfig": "apps/app22/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app22/src/favicon.ico", "apps/app22/src/assets"],
-            "styles": ["apps/app22/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app22/src/favicon.ico",
+              "apps/app22/src/assets"
+            ],
+            "styles": [
+              "apps/app22/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -3182,7 +1979,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3212,7 +2010,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app22"],
+          "outputs": [
+            "coverage/apps/app22"
+          ],
           "options": {
             "jestConfig": "apps/app22/jest.config.js",
             "passWithNoTests": true
@@ -3241,32 +2041,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app22-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "lib22": {
-      "projectType": "library",
-      "root": "libs/lib22",
-      "sourceRoot": "libs/lib22/src",
-      "prefix": "nx-cloud",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/lib22/src/**/*.ts",
-              "libs/lib22/src/**/*.html"
+              "apps/app22-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib22"],
-          "options": {
-            "jestConfig": "libs/lib22/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -3285,10 +2062,20 @@
             "main": "apps/app23/src/main.ts",
             "polyfills": "apps/app23/src/polyfills.ts",
             "tsConfig": "apps/app23/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/app23/src/favicon.ico", "apps/app23/src/assets"],
-            "styles": ["apps/app23/src/styles.css"],
-            "scripts": []
+            "assets": [
+              "apps/app23/src/favicon.ico",
+              "apps/app23/src/assets"
+            ],
+            "styles": [
+              "apps/app23/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -3318,7 +2105,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -3348,7 +2136,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/app23"],
+          "outputs": [
+            "coverage/apps/app23"
+          ],
           "options": {
             "jestConfig": "apps/app23/jest.config.js",
             "passWithNoTests": true
@@ -3377,7 +2167,1449 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/app23-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/app23-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app3": {
+      "projectType": "application",
+      "root": "apps/app3",
+      "sourceRoot": "apps/app3/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app3",
+            "index": "apps/app3/src/index.html",
+            "main": "apps/app3/src/main.ts",
+            "polyfills": "apps/app3/src/polyfills.ts",
+            "tsConfig": "apps/app3/tsconfig.app.json",
+            "assets": [
+              "apps/app3/src/favicon.ico",
+              "apps/app3/src/assets"
+            ],
+            "styles": [
+              "apps/app3/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app3/src/environments/environment.ts",
+                  "with": "apps/app3/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app3:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app3:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app3:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app3/src/**/*.ts",
+              "apps/app3/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app3"
+          ],
+          "options": {
+            "jestConfig": "apps/app3/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app3-e2e": {
+      "root": "apps/app3-e2e",
+      "sourceRoot": "apps/app3-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app3-e2e/cypress.json",
+            "tsConfig": "apps/app3-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app3:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app3:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app3-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app4": {
+      "projectType": "application",
+      "root": "apps/app4",
+      "sourceRoot": "apps/app4/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app4",
+            "index": "apps/app4/src/index.html",
+            "main": "apps/app4/src/main.ts",
+            "polyfills": "apps/app4/src/polyfills.ts",
+            "tsConfig": "apps/app4/tsconfig.app.json",
+            "assets": [
+              "apps/app4/src/favicon.ico",
+              "apps/app4/src/assets"
+            ],
+            "styles": [
+              "apps/app4/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app4/src/environments/environment.ts",
+                  "with": "apps/app4/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app4:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app4:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app4:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app4/src/**/*.ts",
+              "apps/app4/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app4"
+          ],
+          "options": {
+            "jestConfig": "apps/app4/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app4-e2e": {
+      "root": "apps/app4-e2e",
+      "sourceRoot": "apps/app4-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app4-e2e/cypress.json",
+            "tsConfig": "apps/app4-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app4:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app4:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app4-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app5": {
+      "projectType": "application",
+      "root": "apps/app5",
+      "sourceRoot": "apps/app5/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app5",
+            "index": "apps/app5/src/index.html",
+            "main": "apps/app5/src/main.ts",
+            "polyfills": "apps/app5/src/polyfills.ts",
+            "tsConfig": "apps/app5/tsconfig.app.json",
+            "assets": [
+              "apps/app5/src/favicon.ico",
+              "apps/app5/src/assets"
+            ],
+            "styles": [
+              "apps/app5/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app5/src/environments/environment.ts",
+                  "with": "apps/app5/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app5:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app5:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app5:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app5/src/**/*.ts",
+              "apps/app5/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app5"
+          ],
+          "options": {
+            "jestConfig": "apps/app5/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app5-e2e": {
+      "root": "apps/app5-e2e",
+      "sourceRoot": "apps/app5-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app5-e2e/cypress.json",
+            "tsConfig": "apps/app5-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app5:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app5:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app5-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app6": {
+      "projectType": "application",
+      "root": "apps/app6",
+      "sourceRoot": "apps/app6/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app6",
+            "index": "apps/app6/src/index.html",
+            "main": "apps/app6/src/main.ts",
+            "polyfills": "apps/app6/src/polyfills.ts",
+            "tsConfig": "apps/app6/tsconfig.app.json",
+            "assets": [
+              "apps/app6/src/favicon.ico",
+              "apps/app6/src/assets"
+            ],
+            "styles": [
+              "apps/app6/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app6/src/environments/environment.ts",
+                  "with": "apps/app6/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app6:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app6:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app6:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app6/src/**/*.ts",
+              "apps/app6/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app6"
+          ],
+          "options": {
+            "jestConfig": "apps/app6/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app6-e2e": {
+      "root": "apps/app6-e2e",
+      "sourceRoot": "apps/app6-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app6-e2e/cypress.json",
+            "tsConfig": "apps/app6-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app6:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app6:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app6-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app7": {
+      "projectType": "application",
+      "root": "apps/app7",
+      "sourceRoot": "apps/app7/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app7",
+            "index": "apps/app7/src/index.html",
+            "main": "apps/app7/src/main.ts",
+            "polyfills": "apps/app7/src/polyfills.ts",
+            "tsConfig": "apps/app7/tsconfig.app.json",
+            "assets": [
+              "apps/app7/src/favicon.ico",
+              "apps/app7/src/assets"
+            ],
+            "styles": [
+              "apps/app7/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app7/src/environments/environment.ts",
+                  "with": "apps/app7/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app7:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app7:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app7:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app7/src/**/*.ts",
+              "apps/app7/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app7"
+          ],
+          "options": {
+            "jestConfig": "apps/app7/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app7-e2e": {
+      "root": "apps/app7-e2e",
+      "sourceRoot": "apps/app7-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app7-e2e/cypress.json",
+            "tsConfig": "apps/app7-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app7:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app7:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app7-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app8": {
+      "projectType": "application",
+      "root": "apps/app8",
+      "sourceRoot": "apps/app8/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app8",
+            "index": "apps/app8/src/index.html",
+            "main": "apps/app8/src/main.ts",
+            "polyfills": "apps/app8/src/polyfills.ts",
+            "tsConfig": "apps/app8/tsconfig.app.json",
+            "assets": [
+              "apps/app8/src/favicon.ico",
+              "apps/app8/src/assets"
+            ],
+            "styles": [
+              "apps/app8/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app8/src/environments/environment.ts",
+                  "with": "apps/app8/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app8:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app8:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app8:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app8/src/**/*.ts",
+              "apps/app8/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app8"
+          ],
+          "options": {
+            "jestConfig": "apps/app8/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app8-e2e": {
+      "root": "apps/app8-e2e",
+      "sourceRoot": "apps/app8-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app8-e2e/cypress.json",
+            "tsConfig": "apps/app8-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app8:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app8:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app8-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "app9": {
+      "projectType": "application",
+      "root": "apps/app9",
+      "sourceRoot": "apps/app9/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/app9",
+            "index": "apps/app9/src/index.html",
+            "main": "apps/app9/src/main.ts",
+            "polyfills": "apps/app9/src/polyfills.ts",
+            "tsConfig": "apps/app9/tsconfig.app.json",
+            "assets": [
+              "apps/app9/src/favicon.ico",
+              "apps/app9/src/assets"
+            ],
+            "styles": [
+              "apps/app9/src/styles.css"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/app9/src/environments/environment.ts",
+                  "with": "apps/app9/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app9:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app9:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app9:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app9/src/**/*.ts",
+              "apps/app9/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app9"
+          ],
+          "options": {
+            "jestConfig": "apps/app9/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app9-e2e": {
+      "root": "apps/app9-e2e",
+      "sourceRoot": "apps/app9-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/app9-e2e/cypress.json",
+            "tsConfig": "apps/app9-e2e/tsconfig.e2e.json",
+            "devServerTarget": "app9:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app9:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/app9-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "docs": {
+      "projectType": "application",
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/docs",
+            "index": "apps/docs/src/index.html",
+            "main": "apps/docs/src/main.ts",
+            "polyfills": "apps/docs/src/polyfills.ts",
+            "tsConfig": "apps/docs/tsconfig.app.json",
+            "assets": [
+              "apps/docs/src/favicon.ico",
+              "apps/docs/src/assets"
+            ],
+            "styles": [
+              "apps/docs/src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/docs/src/environments/environment.ts",
+                  "with": "apps/docs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "docs:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "docs:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "docs:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/docs/src/**/*.ts",
+              "apps/docs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/docs"
+          ],
+          "options": {
+            "jestConfig": "apps/docs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "docs-e2e": {
+      "root": "apps/docs-e2e",
+      "sourceRoot": "apps/docs-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/docs-e2e/cypress.json",
+            "tsConfig": "apps/docs-e2e/tsconfig.e2e.json",
+            "devServerTarget": "docs:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "docs:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/docs-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "lib0": {
+      "projectType": "library",
+      "root": "libs/lib0",
+      "sourceRoot": "libs/lib0/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib0/src/**/*.ts",
+              "libs/lib0/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib0"
+          ],
+          "options": {
+            "jestConfig": "libs/lib0/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib1": {
+      "projectType": "library",
+      "root": "libs/lib1",
+      "sourceRoot": "libs/lib1/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib1/src/**/*.ts",
+              "libs/lib1/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib1"
+          ],
+          "options": {
+            "jestConfig": "libs/lib1/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib10": {
+      "projectType": "library",
+      "root": "libs/lib10",
+      "sourceRoot": "libs/lib10/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib10/src/**/*.ts",
+              "libs/lib10/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib10"
+          ],
+          "options": {
+            "jestConfig": "libs/lib10/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib11": {
+      "projectType": "library",
+      "root": "libs/lib11",
+      "sourceRoot": "libs/lib11/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib11/src/**/*.ts",
+              "libs/lib11/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib11"
+          ],
+          "options": {
+            "jestConfig": "libs/lib11/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib12": {
+      "projectType": "library",
+      "root": "libs/lib12",
+      "sourceRoot": "libs/lib12/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib12/src/**/*.ts",
+              "libs/lib12/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib12"
+          ],
+          "options": {
+            "jestConfig": "libs/lib12/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib13": {
+      "projectType": "library",
+      "root": "libs/lib13",
+      "sourceRoot": "libs/lib13/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib13/src/**/*.ts",
+              "libs/lib13/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib13"
+          ],
+          "options": {
+            "jestConfig": "libs/lib13/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib14": {
+      "projectType": "library",
+      "root": "libs/lib14",
+      "sourceRoot": "libs/lib14/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib14/src/**/*.ts",
+              "libs/lib14/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib14"
+          ],
+          "options": {
+            "jestConfig": "libs/lib14/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib15": {
+      "projectType": "library",
+      "root": "libs/lib15",
+      "sourceRoot": "libs/lib15/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib15/src/**/*.ts",
+              "libs/lib15/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib15"
+          ],
+          "options": {
+            "jestConfig": "libs/lib15/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib16": {
+      "projectType": "library",
+      "root": "libs/lib16",
+      "sourceRoot": "libs/lib16/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib16/src/**/*.ts",
+              "libs/lib16/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib16"
+          ],
+          "options": {
+            "jestConfig": "libs/lib16/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib17": {
+      "projectType": "library",
+      "root": "libs/lib17",
+      "sourceRoot": "libs/lib17/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib17/src/**/*.ts",
+              "libs/lib17/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib17"
+          ],
+          "options": {
+            "jestConfig": "libs/lib17/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib18": {
+      "projectType": "library",
+      "root": "libs/lib18",
+      "sourceRoot": "libs/lib18/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib18/src/**/*.ts",
+              "libs/lib18/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib18"
+          ],
+          "options": {
+            "jestConfig": "libs/lib18/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib19": {
+      "projectType": "library",
+      "root": "libs/lib19",
+      "sourceRoot": "libs/lib19/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib19/src/**/*.ts",
+              "libs/lib19/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib19"
+          ],
+          "options": {
+            "jestConfig": "libs/lib19/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib2": {
+      "projectType": "library",
+      "root": "libs/lib2",
+      "sourceRoot": "libs/lib2/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib2/src/**/*.ts",
+              "libs/lib2/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib2"
+          ],
+          "options": {
+            "jestConfig": "libs/lib2/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib20": {
+      "projectType": "library",
+      "root": "libs/lib20",
+      "sourceRoot": "libs/lib20/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib20/src/**/*.ts",
+              "libs/lib20/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib20"
+          ],
+          "options": {
+            "jestConfig": "libs/lib20/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib21": {
+      "projectType": "library",
+      "root": "libs/lib21",
+      "sourceRoot": "libs/lib21/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib21/src/**/*.ts",
+              "libs/lib21/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib21"
+          ],
+          "options": {
+            "jestConfig": "libs/lib21/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib22": {
+      "projectType": "library",
+      "root": "libs/lib22",
+      "sourceRoot": "libs/lib22/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib22/src/**/*.ts",
+              "libs/lib22/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib22"
+          ],
+          "options": {
+            "jestConfig": "libs/lib22/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -3399,9 +3631,200 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lib23"],
+          "outputs": [
+            "coverage/libs/lib23"
+          ],
           "options": {
             "jestConfig": "libs/lib23/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib3": {
+      "projectType": "library",
+      "root": "libs/lib3",
+      "sourceRoot": "libs/lib3/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib3/src/**/*.ts",
+              "libs/lib3/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib3"
+          ],
+          "options": {
+            "jestConfig": "libs/lib3/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib4": {
+      "projectType": "library",
+      "root": "libs/lib4",
+      "sourceRoot": "libs/lib4/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib4/src/**/*.ts",
+              "libs/lib4/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib4"
+          ],
+          "options": {
+            "jestConfig": "libs/lib4/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib5": {
+      "projectType": "library",
+      "root": "libs/lib5",
+      "sourceRoot": "libs/lib5/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib5/src/**/*.ts",
+              "libs/lib5/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib5"
+          ],
+          "options": {
+            "jestConfig": "libs/lib5/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib6": {
+      "projectType": "library",
+      "root": "libs/lib6",
+      "sourceRoot": "libs/lib6/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib6/src/**/*.ts",
+              "libs/lib6/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib6"
+          ],
+          "options": {
+            "jestConfig": "libs/lib6/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib7": {
+      "projectType": "library",
+      "root": "libs/lib7",
+      "sourceRoot": "libs/lib7/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib7/src/**/*.ts",
+              "libs/lib7/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib7"
+          ],
+          "options": {
+            "jestConfig": "libs/lib7/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib8": {
+      "projectType": "library",
+      "root": "libs/lib8",
+      "sourceRoot": "libs/lib8/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib8/src/**/*.ts",
+              "libs/lib8/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib8"
+          ],
+          "options": {
+            "jestConfig": "libs/lib8/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lib9": {
+      "projectType": "library",
+      "root": "libs/lib9",
+      "sourceRoot": "libs/lib9/src",
+      "prefix": "nx-cloud",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib9/src/**/*.ts",
+              "libs/lib9/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lib9"
+          ],
+          "options": {
+            "jestConfig": "libs/lib9/jest.config.js",
             "passWithNoTests": true
           }
         }
