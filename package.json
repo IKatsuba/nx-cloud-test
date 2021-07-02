@@ -52,6 +52,7 @@
     "@angular/language-service": "^11.2.0",
     "@nrwl/cli": "11.6.3",
     "@nrwl/cypress": "11.6.3",
+    "@nrwl/devkit": "11.6.3",
     "@nrwl/eslint-plugin-nx": "11.6.3",
     "@nrwl/jest": "11.6.3",
     "@nrwl/linter": "11.6.3",

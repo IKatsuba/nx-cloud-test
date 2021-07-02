@@ -14,7 +14,32 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-cloud/lib0": ["libs/lib0/src/index.ts"],
+      "@nx-cloud/lib1": ["libs/lib1/src/index.ts"],
+      "@nx-cloud/lib2": ["libs/lib2/src/index.ts"],
+      "@nx-cloud/lib3": ["libs/lib3/src/index.ts"],
+      "@nx-cloud/lib4": ["libs/lib4/src/index.ts"],
+      "@nx-cloud/lib5": ["libs/lib5/src/index.ts"],
+      "@nx-cloud/lib6": ["libs/lib6/src/index.ts"],
+      "@nx-cloud/lib7": ["libs/lib7/src/index.ts"],
+      "@nx-cloud/lib8": ["libs/lib8/src/index.ts"],
+      "@nx-cloud/lib9": ["libs/lib9/src/index.ts"],
+      "@nx-cloud/lib10": ["libs/lib10/src/index.ts"],
+      "@nx-cloud/lib11": ["libs/lib11/src/index.ts"],
+      "@nx-cloud/lib12": ["libs/lib12/src/index.ts"],
+      "@nx-cloud/lib13": ["libs/lib13/src/index.ts"],
+      "@nx-cloud/lib14": ["libs/lib14/src/index.ts"],
+      "@nx-cloud/lib15": ["libs/lib15/src/index.ts"],
+      "@nx-cloud/lib16": ["libs/lib16/src/index.ts"],
+      "@nx-cloud/lib17": ["libs/lib17/src/index.ts"],
+      "@nx-cloud/lib18": ["libs/lib18/src/index.ts"],
+      "@nx-cloud/lib19": ["libs/lib19/src/index.ts"],
+      "@nx-cloud/lib20": ["libs/lib20/src/index.ts"],
+      "@nx-cloud/lib21": ["libs/lib21/src/index.ts"],
+      "@nx-cloud/lib22": ["libs/lib22/src/index.ts"],
+      "@nx-cloud/lib23": ["libs/lib23/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
